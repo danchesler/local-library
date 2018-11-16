@@ -1,0 +1,26 @@
+<!-- template tags are enclosed in braces with percents-->
+{% extends "base_generic.html" %}
+
+<!--overides the title block in base template -->
+{% block title %}<title>Local Library Home</title>{% endblock %}
+{% block content %}
+	<h1>Local Library Home</h1>
+	<p>Welcome to Local Library<em>Mozarella</em>!</p>
+	<!-- Declare placeholders for info from view that we want to include in dynamic content -->
+	<h2>Dynamic Content</h2> 
+	<p>The library as the following record counts</p>
+	<ul>
+		<!-- template variables are enclosed in double braces {{ var }} -->
+		<!-- the KEYS from the dictionary 'context' in views.py passed into render() -->
+		<li><strong>Books: </strong>{{ num_books }}</li>
+		<li><strong>Copies: </strong>{{ num_instances }}</li>
+		<li><strong>Copies available: </strong>{{ num_instances_available }}</li>
+		<li><strong>Authors: </strong>{{ num_authors }}</li>
+		<li><strong>Genres: </strong>{{ num_genres }}</li>
+		<li><strong>Book titles with '{{ word_filter }}': </strong>{{ num_books_word }}</li>
+	</ul>
+
+	<p>You have visited {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+{% endblock %}
+
+

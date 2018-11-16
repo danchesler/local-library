@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<h1>{{ author }}</h1>
+	<p>{{ author.date_of_birth }} - {% if not author.date_of_death %} {% else %} {{ author.date_of_death }} {% endif %}</p>
+
+	<hr>
+	<div style="margin-left:20px;margin-top:20px">
+		<h3>Books:</h3>
+		<!-- author.book_set.all returns all books associated with the author
+			the modelname_set() function is provided by django
+			So if you want to identify a subset associated with your original model you do model.submodel_set.all
+		-->
+		{% for book in author.book_set.all %}
+			<a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{ book.id }})
+			<dd>{{ book.summary }}</dd>
+		{% endfor %}
+	</div>
+{% endblock %}
